@@ -1,14 +1,14 @@
 import { Divider, Spacer } from "@chakra-ui/react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { todoListState } from "../recoil/atoms/todoListAtom";
 import TodoItemCreator from "./TodoItemCreator";
 import TodoItemView, { TodoItem } from "./TodoItemView";
-import { TodoListFilters } from './TodoListFilters';
+import { TodoListFilters } from "./TodoListFilters";
 import { TodoListStatsView } from "./TodoListStatsView";
 
-
 function TodoList() {
-  const todoList = [] as TodoItem[];
+  const todoList = useRecoilValue(todoListState);
+
   return (
     <>
       <TodoItemCreator />
