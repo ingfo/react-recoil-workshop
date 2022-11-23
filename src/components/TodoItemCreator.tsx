@@ -1,7 +1,7 @@
-import { Box, Button, Input, InputGroup } from '@chakra-ui/react';
+import { Box, Button, Input, InputGroup } from "@chakra-ui/react";
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
-import { todoListState } from "../recoil/atoms/todoListAtom"
+import { todoListState } from "../recoil/atoms/todoListAtom";
 
 let id = 0;
 function getId() {
@@ -10,12 +10,15 @@ function getId() {
 
 function TodoItemCreator() {
   const [inputValue, setInputValue] = useState<string>("");
+  const setTodoList = useSetRecoilState(todoListState);
 
-  const onChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(value);
   };
 
-  /* const addItem = () => {
+  const addItem = () => {
     setTodoList((oldTodoList) => [
       ...oldTodoList,
       {
@@ -25,13 +28,15 @@ function TodoItemCreator() {
       },
     ]);
     setInputValue("");
-  }; */
+  };
 
   return (
     <Box my={4}>
       <InputGroup>
         <Input type="text" value={inputValue} onChange={onChange} />
-        {/* <Button onClick={addItem} ml={8}>Legg til</Button> */}
+        <Button onClick={addItem} ml={8}>
+          Legg til
+        </Button>
       </InputGroup>
     </Box>
   );
