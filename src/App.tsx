@@ -6,10 +6,10 @@ import TodoListApp from "./TodoListApp";
 
 function App() {
   /*
-  * I Examples() har du tilgang til 3 komponenter som viser ulike måter å bruke recoil på.
-  * Ta gjerne en titt gjennom disse før du starter på oppgavene da de kan være nyttige.
-  * Fjern <Examples /> når du er klar for oppgavene og fortsett fra README.md
-  */
+   * I Examples() har du tilgang til 3 komponenter som viser ulike måter å bruke recoil på.
+   * Ta gjerne en titt gjennom disse før du starter på oppgavene da de kan være nyttige.
+   * Fjern <Examples /> når du er klar for oppgavene og fortsett fra README.md
+   */
   function Examples() {
     return (
       <RecoilRoot>
@@ -23,13 +23,13 @@ function App() {
       </RecoilRoot>
     );
   }
-  
+
   return (
-    <>
-      <Examples />
+    <RecoilRoot>
+      {/*<Examples />*/}
       {/* Todo list app */}
-      {/* <TodoListApp /> */}
-    </>
+      <TodoListApp />
+    </RecoilRoot>
   );
 }
 
