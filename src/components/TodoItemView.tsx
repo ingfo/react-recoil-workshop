@@ -4,12 +4,16 @@ import { useRecoilState } from "recoil";
 import { todoListState } from "../recoil/atoms/todoListAtom";
 
 export interface TodoItem {
-    id: number;
-    text: string;
-    isComplete: boolean;
+  id: number;
+  text: string;
+  isComplete: boolean;
 }
 
-const replaceItemAtIndex = (arr: TodoItem[], index: number, newValue: TodoItem) => {
+const replaceItemAtIndex = (
+  arr: TodoItem[],
+  index: number,
+  newValue: TodoItem
+) => {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 };
 
@@ -22,8 +26,8 @@ interface TodoItemViewProps {
   key: number;
 }
 
-const TodoItemView = ({item, key}: TodoItemViewProps) => {
-  const [todoList, setTodoList] = useState<TodoItem[]>([]);
+const TodoItemView = ({ item, key }: TodoItemViewProps) => {
+  const [todoList, setTodoList] = useRecoilState<TodoItem[]>(todoListState);
   const index = todoList.findIndex((listItem) => listItem === item);
 
   const editItemText = ({
@@ -55,7 +59,12 @@ const TodoItemView = ({item, key}: TodoItemViewProps) => {
   return (
     <InputGroup key={key} my={4}>
       <Input type="text" value={item.text} onChange={editItemText} />
-      <Checkbox size="lg" mx={4} isChecked={item.isComplete} onChange={toggleItemCompletion} />
+      <Checkbox
+        size="lg"
+        mx={4}
+        isChecked={item.isComplete}
+        onChange={toggleItemCompletion}
+      />
       <Button onClick={deleteItem}>Slett</Button>
     </InputGroup>
   );
